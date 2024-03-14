@@ -27,23 +27,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nurlanmu\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nurlanmu\\Desktop\\C#\\CourseApp\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\OneDrive\\Рабочий стол\\c#\\c# intro, Datatypes and more\\MiniProject-Csharp\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\nurlanmu\\Desktop\\C#\\CourseApp\\Repository\\Repository.csproj",
-      "packagesPath": "C:\\Users\\nurlanmu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nurlanmu\\Desktop\\C#\\CourseApp\\Repository\\obj\\",
+      "projectPath": "C:\\Users\\ASUS\\OneDrive\\Рабочий стол\\c#\\c# intro, Datatypes and more\\MiniProject-Csharp\\Repository\\Repository.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ASUS\\OneDrive\\Рабочий стол\\c#\\c# intro, Datatypes and more\\MiniProject-Csharp\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nurlanmu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -58,8 +58,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\nurlanmu\\Desktop\\C#\\CourseApp\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\nurlanmu\\Desktop\\C#\\CourseApp\\Domain\\Domain.csproj"
+            "C:\\Users\\ASUS\\OneDrive\\Рабочий стол\\c#\\c# intro, Datatypes and more\\MiniProject-Csharp\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\ASUS\\OneDrive\\Рабочий стол\\c#\\c# intro, Datatypes and more\\MiniProject-Csharp\\Domain\\Domain.csproj"
             }
           }
         }
@@ -68,11 +68,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -94,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -15,7 +15,7 @@ namespace Service.Services
     public class GroupService : IGroupService
     {
         private readonly IGroupRepository _groupRepository;
-
+        private int count; 
         public GroupService()
         {
             _groupRepository = new GroupRepository();
@@ -24,7 +24,9 @@ namespace Service.Services
         public void Create(Group data)
         {
             if (data == null) throw new ArgumentNullException();
+            data.Id = count;
             _groupRepository.Create(data);
+            count++;
         }
 
         public void Delete(int? id)
@@ -37,27 +39,28 @@ namespace Service.Services
         ///
         public List<Group> GetAll()
         {
-            throw new NotImplementedException();
+            return _groupRepository.GetAll();
         }
 
         public Group GetById(int? id)
         {
-            throw new NotImplementedException();
+            return _groupRepository.GetById(id);
         }
 
         public Group GetByRoom(string room)
         {
-            throw new NotImplementedException();
+            return _groupRepository.GetByRoom(room);
         }
 
         public Group GetByTeacher(string teacher)
         {
-            throw new NotImplementedException();
+            return _groupRepository.GetByTeacher(teacher);
         }
 
+        ///
         public List<Group> SearchByName(string searchText)
         {
-            throw new NotImplementedException();
+            return _groupRepository.GetAllWithExpression(m => m.Name == searchText);
         }
 
         public void Update(Group data)
