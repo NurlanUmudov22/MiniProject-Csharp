@@ -36,7 +36,7 @@ namespace Service.Services
 
             if (group == null) throw new NotFoundException(ResponseMessages.DataNotFound);
         }
-        ///
+        
         public List<Group> GetAll()
         {
             return _groupRepository.GetAll();

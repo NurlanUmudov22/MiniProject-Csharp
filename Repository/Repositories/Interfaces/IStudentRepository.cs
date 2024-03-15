@@ -9,6 +9,7 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IStudentRepository : IBaseRepository<Student>
     {
-
+        List<Student> GetStudentsByAge (int age);
+        List<Student> GetAllStudentsByGroupId (int id);
     }
 }

@@ -9,8 +9,8 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IGroupRepository : IBaseRepository<Group> 
     {
-        List<Group> GetAllGroupsByTeacher(string teacher);
+        List<Group> GetAllGroupsByTeacher(string teacherName);
 
-        List<Group> GetAllGroupsByRoom(string room);
+        List<Group> GetAllGroupsByRoom(string roomName);
     }
 }

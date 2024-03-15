@@ -14,14 +14,14 @@ namespace Repository.Repositories
     {
               
 
-        public List<Group> GetAllGroupsByRoom(string room)
+        public List<Group> GetAllGroupsByRoom(string roomName)
         {
-            return AppDbContext<Group>.datas.FindAll(m=> m.Room == room);
+            return AppDbContext<Group>.datas.Where(m=> m.Room ==roomName).ToList();
         }
 
-        public List<Group> GetAllGroupsByTeacher(string teacher)
+        public List<Group> GetAllGroupsByTeacher(string teacherName)
         {
-            return AppDbContext<Group>.datas.FindAll(m => m.Teacher == teacher);
+            return AppDbContext<Group>.datas.Where(m => m.Teacher == teacherName).ToList();
         }
 
 
