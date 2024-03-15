@@ -19,10 +19,11 @@ namespace Service.Services.Interfaces
 
         List<Group> GetAll();
 
-        List<Group> SearchByName(string searchText);
+       // List<Group> SearchByName(string searchText);
 
-        Group GetByRoom(string room);
+        List<Group> GetAllGroupsByRoom(string room);
 
-        Group GetByTeacher(string teacher);
+
+        List<Group> GetAllGroupsByTeacher(string teacher); 
     }
 }

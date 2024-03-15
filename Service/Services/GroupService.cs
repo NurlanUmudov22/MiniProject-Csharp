@@ -42,22 +42,24 @@ namespace Service.Services
             return _groupRepository.GetAll();
         }
 
+        public List<Group> GetAllGroupsByRoom(string room)
+        {
+            return _groupRepository.GetAllGroupsByRoom(room);
+            //if (room == null) throw new ArgumentNullException();
+        }
+
+        public List<Group> GetAllGroupsByTeacher(string teacher)
+        {
+            return _groupRepository.GetAllGroupsByTeacher( teacher);
+           // if (teacher == null) throw new ArgumentNullException();
+        }
+
         public Group GetById(int? id)
         {
             return _groupRepository.GetById(id);
         }
 
-        public Group GetByRoom(string room)
-        {
-            return _groupRepository.GetByRoom(room);
-        }
-
-        public Group GetByTeacher(string teacher)
-        {
-            return _groupRepository.GetByTeacher(teacher);
-        }
-
-        ///
+      
         public List<Group> SearchByName(string searchText)
         {
             return _groupRepository.GetAllWithExpression(m => m.Name == searchText);
@@ -67,5 +69,7 @@ namespace Service.Services
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

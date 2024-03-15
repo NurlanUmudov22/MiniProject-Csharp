@@ -12,15 +12,18 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
-        public Group GetByRoom(string room)
+              
+
+        public List<Group> GetAllGroupsByRoom(string room)
         {
-            return AppDbContext<Group>.datas.FirstOrDefault(m => m.Room == room);
+            return AppDbContext<Group>.datas.FindAll(m=> m.Room == room);
         }
 
-        public Group GetByTeacher(string teacher)
+        public List<Group> GetAllGroupsByTeacher(string teacher)
         {
-            return AppDbContext<Group>.datas.FirstOrDefault(m => m.Teacher == teacher);
-
+            return AppDbContext<Group>.datas.FindAll(m => m.Teacher == teacher);
         }
+
+
     }
 }

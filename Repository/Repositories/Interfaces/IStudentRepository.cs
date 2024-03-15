@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories.Interfaces
 {
-    public interface IGroupRepository : IBaseRepository<Group> 
+    public interface IStudentRepository : IBaseRepository<Student>
     {
-        List<Group> GetAllGroupsByTeacher(string teacher);
 
-        List<Group> GetAllGroupsByRoom(string room);
     }
 }
