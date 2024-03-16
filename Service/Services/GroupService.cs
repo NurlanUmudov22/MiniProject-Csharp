@@ -39,7 +39,7 @@ namespace Service.Services
             _groupRepository.Delete(group);
         }
         
-        public List<Group> GetAll()
+        public List<Group> GetAllWithExpression()
         {
             return _groupRepository.GetAll();
         }

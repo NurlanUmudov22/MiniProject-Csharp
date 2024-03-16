@@ -17,7 +17,7 @@ namespace Service.Services.Interfaces
 
         Group GetById(int? id);
 
-        List<Group> GetAll();
+        List<Group> GetAllWithExpression();
 
         List<Group> SearchByName(string searchText);
 

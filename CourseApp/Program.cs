@@ -9,6 +9,10 @@ GroupController groupController = new GroupController();
 
 groupController = new GroupController();
 
+StudentController studentController = new StudentController();
+
+studentController = new StudentController();
+
 
 
 static void GetMenues()
@@ -50,13 +54,13 @@ while (true)
                 groupController.GetAllGroupsByTeacher();
                 break;
             case (int)OperationType.GetAllGroupsByRoom:
-                Console.WriteLine("yes");
+                groupController.GetAllGroupsByRoom();
                 break;
             case (int)OperationType.GetAllGroups:
                 groupController.GetAll();
                 break;
             case (int)OperationType.StudentCreate:
-                Console.WriteLine("yes");
+                studentController.Create();
                 break;
             case (int)OperationType.StudentUpdate:
                 ConsoleColor.Yellow.WriteConsole("Service temporarily suspended");  //Console.WriteLine("Service temporarily suspended");
@@ -74,7 +78,7 @@ while (true)
                 Console.WriteLine("yes");
                 break;
             case (int)OperationType.SearchGroupsByName:
-                Console.WriteLine("yes");
+                groupController.SearchGroupsByName();
                 break;
             case (int)OperationType.SearchStudentsByNameOrSurname:
                 Console.WriteLine("yes");

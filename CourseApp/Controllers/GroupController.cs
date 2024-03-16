@@ -78,7 +78,7 @@ namespace CourseApp.Controllers
 
         public void GetAll()
         {
-            var result = _groupService.GetAll();
+            var result = _groupService.GetAllWithExpression();
             foreach (var item in result)
             {
                 string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
@@ -147,37 +147,103 @@ namespace CourseApp.Controllers
 
         }
 
-        //public void GetById()
-        //{
-        //    ConsoleColor.Blue.WriteConsole("Add group id:");
-        //     Id: string idStr = Console.ReadLine();
-        //    int id;
-        //    bool isCorrectIdFormat = int.TryParse(idStr, out id);
-        //    if (isCorrectIdFormat)
-        //    {
-        //        try
-        //        {
-        //            _groupService.GetById(id);
-        //            var result1 = _groupService.GetById(id);
+        public void GetById()
+        {
+            ConsoleColor.Blue.WriteConsole("Add group id:");
+        Id: string idStr = Console.ReadLine();
+            int id;
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+                    _groupService.GetById(id);
+                    var result1 = _groupService.GetById(id);
 
-        //            foreach (var item in result1)
-        //            {
-        //                string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
-        //                Console.WriteLine(data);
-        //            }
+                    Console.WriteLine($"Id:{result1.Id}, Group name: {result1.Name}, Teacher name: {result1.Teacher}, Room name: {result1.Room}");
+                    
 
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ConsoleColor.Red.WriteConsole(ex.Message);
-        //            goto Id;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ConsoleColor.Red.WriteConsole("Id format is wrong, please add again");
-        //        goto Id;
-        //    }
-        //}
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Id;
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong, please add again");
+                goto Id;
+            }
+        }
+
+        public void GetAllGroupsByRoom()
+        {
+            ConsoleColor.Blue.WriteConsole("Add room name:");
+            Room: string room = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(room))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Room;
+            }
+            else
+            {
+                try
+                {
+                    _groupService.GetAllGroupsByRoom(room);
+
+                    var result = _groupService.GetAllGroupsByRoom(room);
+
+                    foreach (var item in result)
+                    {
+                        string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
+                        Console.WriteLine(data);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Room;
+
+                }
+            }
+        }
+
+        public void SearchGroupsByName()
+        {
+            ConsoleColor.Blue.WriteConsole("Add group name:");
+            Name: string name = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Name;
+            }
+            else
+            {
+                try
+                {
+                    _groupService.SearchByName(name);
+
+                    var result1 = _groupService.SearchByName(name);
+
+                    foreach (var item in result1)
+                    {
+                        string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
+                        Console.WriteLine(data);
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Name;
+
+                }
+            }
+        }
     }
 }
