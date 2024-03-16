@@ -35,6 +35,8 @@ namespace Service.Services
             Group group = _groupRepository.GetById(id);
 
             if (group == null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+            _groupRepository.Delete(group);
         }
         
         public List<Group> GetAll()
@@ -56,7 +58,12 @@ namespace Service.Services
 
         public Group GetById(int? id)
         {
-            return _groupRepository.GetById(id);
+            //return _groupRepository.GetById(id);
+            if (id == null) throw new ArgumentNullException();
+            Group group = _groupRepository.GetById(id);
+
+            if (group == null) throw new NotFoundException(ResponseMessages.DataNotFound);
+            return group;
         }
 
       

@@ -24,6 +24,8 @@ namespace Service.Services.Interfaces
         List<Group> GetAllGroupsByRoom(string room);
 
 
-        List<Group> GetAllGroupsByTeacher(string teacher); 
+        List<Group> GetAllGroupsByTeacher(string teacher);
+       // void GetAllWithExpression();
+        //void GetAllGroupsByTeacher();
     }
 }

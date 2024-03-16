@@ -1,10 +1,13 @@
 ﻿
+using CourseApp.Controllers;
 using Service.Helpers.Enums;
 using Service.Helpers.Extensions;
 
-GetMenues();
+//GetMenues();
 
+GroupController groupController = new GroupController();
 
+groupController = new GroupController();
 
 
 
@@ -17,12 +20,10 @@ static void GetMenues()
 
 
 
-//Console.WriteLine("Choose one operation : \n  1. Group create \n " + " 2. Group delete  \n  3. Group update \n  4. Get all groups ");
-
-
-
 while (true)
 {
+    GetMenues();
+
     Operation:  string operationStr = Console.ReadLine();
 
     int operation;
@@ -34,31 +35,31 @@ while (true)
         switch (operation)
         {
             case (int)OperationType.GroupCreate:
-                Console.WriteLine("yes");
+                groupController.Create();
                 break;
             case (int)OperationType.GroupUpdate:
-                Console.WriteLine("no");
+                ConsoleColor.Yellow.WriteConsole("Service temporarily suspended");  //Console.WriteLine("Service temporarily suspended");
                 break;
             case (int)OperationType.GroupDelete:
-                Console.WriteLine("yes");
+                groupController.Delete();
                 break;
             case (int)OperationType.GetGroupById:
-                Console.WriteLine("yes");
-                break;
+                groupController.GetById();
+                    break;
             case (int)OperationType.GetAllGroupsByTeacher:
-                Console.WriteLine("yes");
+                groupController.GetAllGroupsByTeacher();
                 break;
             case (int)OperationType.GetAllGroupsByRoom:
                 Console.WriteLine("yes");
                 break;
             case (int)OperationType.GetAllGroups:
-                Console.WriteLine("yes");
+                groupController.GetAll();
                 break;
             case (int)OperationType.StudentCreate:
                 Console.WriteLine("yes");
                 break;
             case (int)OperationType.StudentUpdate:
-                Console.WriteLine("yes");
+                ConsoleColor.Yellow.WriteConsole("Service temporarily suspended");  //Console.WriteLine("Service temporarily suspended");
                 break;
             case (int)OperationType.GetStudentById:
                 Console.WriteLine("yes");
@@ -78,10 +79,9 @@ while (true)
             case (int)OperationType.SearchStudentsByNameOrSurname:
                 Console.WriteLine("yes");
                 break;
-
-
-
-
+            default:
+                ConsoleColor.Red.WriteConsole("Operation format is wrong, please choose again");
+                goto Operation;
         }
     }
     else
