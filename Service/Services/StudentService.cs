@@ -17,7 +17,7 @@ namespace Service.Services
        
 
         private readonly IStudentRepository _studentRepository;
-        private int count;
+        private int count = 1;
 
         public StudentService()
         {

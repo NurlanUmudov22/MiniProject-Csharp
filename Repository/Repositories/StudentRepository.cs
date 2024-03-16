@@ -13,7 +13,7 @@ namespace Repository.Repositories
     {
         public List<Student> GetAllStudentsByGroupId(int id)
         {
-            return AppDbContext<Student>.datas.Where(m => m.Id == id).ToList();
+            return AppDbContext<Student>.datas.Where(m => m.Group.Id == id).ToList();
         }
 
         public List<Student> GetStudentsByAge(int age)
