@@ -64,14 +64,21 @@ namespace Service.Services
             return _studentRepository.GetStudentsByAge(age);
         }
 
-        public List<Student> SearchByName(string searchText)
+        //public List<Student> SearchByName(string searchText)
+        //{
+        //    return _studentRepository.GetAllWithExpression(m => m.Name == searchText);
+        //}
+
+        public List<Student> SearchStudentsByNameOrSurname(string text)
         {
-            return _studentRepository.GetAllWithExpression(m => m.Name == searchText);
+            return _studentRepository.SearchStudentsByNameOrSurname(text);
         }
 
         public void Update(Student data)
         {
             throw new NotImplementedException();
         }
+
+            
     }
 }

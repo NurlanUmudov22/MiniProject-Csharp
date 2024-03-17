@@ -11,5 +11,7 @@ namespace Repository.Repositories.Interfaces
     {
         List<Student> GetStudentsByAge (int age);
         List<Student> GetAllStudentsByGroupId (int id);
+
+        List<Student> SearchStudentsByNameOrSurname(string text);
     }
 }

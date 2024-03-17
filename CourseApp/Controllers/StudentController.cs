@@ -192,7 +192,71 @@ namespace CourseApp.Controllers
 
         public void GetAllStudentsByGroupId()
         {
-
+            ConsoleColor.Blue.WriteConsole("Add group id:");
+            Id:  string idStr = Console.ReadLine();
+            int id;
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+                    var result = _studentService.GetAllStudentsByGroupId(id);
+                    foreach (var item in result)
+                    {
+                        string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
+                        Console.WriteLine(data);
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Id;
+                }
+            }
         }
+
+        public void SearchStudentsByNameOrSurname()
+        {
+            ConsoleColor.Blue.WriteConsole("Add student name or surname:");
+            Name: string text = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Name;
+            }
+            else
+            {
+                try
+                {
+                    _studentService.SearchStudentsByNameOrSurname(text);
+
+                    var result1 = _studentService.SearchStudentsByNameOrSurname(text);
+                    if (result1 != null)
+                    {
+                        foreach (var item in result1)
+                        {
+                            string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
+                            Console.WriteLine(data);
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Data not found");
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Name;
+
+                }
+            }
+        }
+
     }
 }

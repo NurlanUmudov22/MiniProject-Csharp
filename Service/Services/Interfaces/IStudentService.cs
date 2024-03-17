@@ -23,9 +23,9 @@ namespace Service.Services.Interfaces
 
         List<Student> GetStudentsByAge(int age);
 
-        List<Student> SearchByName(string searchText);
+        //List<Student> SearchByName(string searchText);
 
-
+        List<Student> SearchStudentsByNameOrSurname(string text);
 
     }
 }

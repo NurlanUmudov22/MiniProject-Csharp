@@ -20,5 +20,11 @@ namespace Repository.Repositories
         {
             return AppDbContext<Student>.datas.Where(m => m.Age == age).ToList();
         }
+
+
+        public List<Student> SearchStudentsByNameOrSurname(string text)
+        {
+            return AppDbContext<Student>.datas.Where(m => m.Name == text || m.Surname == text).ToList();
+        }
     }
 }
