@@ -77,6 +77,9 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-       
+        public List<Group> GetAll()
+        {
+            return _groupRepository.GetAll();
+        }
     }
 }

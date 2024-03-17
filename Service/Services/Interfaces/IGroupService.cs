@@ -16,6 +16,7 @@ namespace Service.Services.Interfaces
         void Update(Group data);
 
         Group GetById(int? id);
+        List<Group> GetAll();
 
         List<Group> GetAllWithExpression();
 

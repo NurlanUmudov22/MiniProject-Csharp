@@ -14,10 +14,9 @@ StudentController studentController = new StudentController();
 studentController = new StudentController();
 
 
-
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n  1. Group create \n " + " 2. Group update \n  3. Group delete \n  4. Get group by id \n  5. Get all groups by teacher name \n  6. Get all groups by room name \n  7. Get all groups \n  8. Student create \n  9. Student update \n  10. Get student by Id \n  11. Student delete \n  12. Get student by age \n  13. Get all students by group Id \n  14. Search groups by name \n  15. Search students by name or surname ");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation : \n  1. Group create \n " + " 2. Group update \n  3. Group delete \n  4. Get group by id \n  5. Get all groups by teacher name \n  6. Get all groups by room name \n  7. Get all groups \n  8. Student create \n  9. Student update \n  10. Get student by Id \n  11. Student delete \n  12. Get student by age \n  13. Get all students by group Id \n  14. Search groups by name \n  15. Search students by name or surname \n  16. Get All Students");
 
 }
 
@@ -82,6 +81,9 @@ while (true)
                 break;
             case (int)OperationType.SearchStudentsByNameOrSurname:
                 Console.WriteLine("yes");
+                break;
+            case (int)OperationType.GetAllStudents:
+                studentController.GetAll();
                 break;
             default:
                 ConsoleColor.Red.WriteConsole("Operation format is wrong, please choose again");

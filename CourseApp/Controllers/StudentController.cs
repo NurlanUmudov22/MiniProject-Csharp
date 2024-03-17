@@ -14,7 +14,7 @@ namespace CourseApp.Controllers
     internal class StudentController 
     {
         private readonly IStudentService _studentService;
-        //private readonly IGroupService _groupService;
+       // private readonly IGroupService _groupService;
 
         public StudentController() //IStudentService studentService, IGroupService groupService)
         {
@@ -23,61 +23,74 @@ namespace CourseApp.Controllers
         }
 
 
-        //public void Create()
-        //{
-        //    ConsoleColor.Blue.WriteConsole("Add student name:");
-        //    Name: string name = Console.ReadLine();
+        public void Create()
+        {
+            ConsoleColor.Blue.WriteConsole("Add student name:");
+            Name: string name = Console.ReadLine();
 
-        //    if (string.IsNullOrWhiteSpace(name))
-        //    {
-        //        ConsoleColor.Red.WriteConsole("Input can't be empty");
-        //        goto Name;
-        //    }
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Name;
+            }
 
-        //    ConsoleColor.Blue.WriteConsole("Add student surname:");
-        //    Surname: string surname = Console.ReadLine();
+            ConsoleColor.Blue.WriteConsole("Add student surname:");
+            Surname: string surname = Console.ReadLine();
 
-        //    if (string.IsNullOrWhiteSpace(surname))
-        //    {
-        //        ConsoleColor.Red.WriteConsole("Input can't be empty");
-        //        goto Surname;
-        //    }
+            if (string.IsNullOrWhiteSpace(surname))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Surname;
+            }
 
-        //    ConsoleColor.Blue.WriteConsole("Add age:");
-        //    Age: string ageStr = Console.ReadLine();
-        //    int age;
-        //    bool isCorrectCapacityFormat = int.TryParse(ageStr, out age);
+            ConsoleColor.Blue.WriteConsole("Add age:");
+            Age: string ageStr = Console.ReadLine();
+            int age;
+            bool isCorrectCapacityFormat = int.TryParse(ageStr, out age);
 
-        //    if (isCorrectCapacityFormat)
-        //    {
+            if (isCorrectCapacityFormat)
+            {
 
-        //        ConsoleColor.Blue.WriteConsole("Add group name:");
-        //         Group: string group = Console.ReadLine();
+                ConsoleColor.Blue.WriteConsole("Add group name:");
+                Group: string group = Console.ReadLine();
 
-        //        if (string.IsNullOrWhiteSpace(group))
-        //        {
-        //            ConsoleColor.Red.WriteConsole("Input can't be empty");
-        //            goto Group;
-        //        }
-        //        try
-        //        {
+                if (string.IsNullOrWhiteSpace(group))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty");
+                    goto Group;
+                }
+                try
+                {
+                   // _studentService.Create(new Student { Name = name, Surname = surname, Age = age, Group = Group group});
 
-        //            ConsoleColor.Green.WriteConsole("Data successfully added");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ConsoleColor.Red.WriteConsole(ex.Message);
-        //            goto Name;
-        //        }
-        //    }
-        //    else
-        //    {
-                
-        //        ConsoleColor.Red.WriteConsole("Age format is wrong, please add operation again");
-        //        goto Age;
+                    ConsoleColor.Green.WriteConsole("Data successfully added");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Name;
+                }
+            }
+            else
+            {
 
-        //    }
+                ConsoleColor.Red.WriteConsole("Age format is wrong, please add operation again");
+                goto Age;
 
-        //}
+            }
+
+        }
+
+
+
+        public void GetAll()
+        {
+            var result = _studentService.GetAll();
+            foreach (var item in result)
+            {
+                string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group}, Age: {item.Age}";
+                Console.WriteLine(data);
+            }
+        }
     }
 }

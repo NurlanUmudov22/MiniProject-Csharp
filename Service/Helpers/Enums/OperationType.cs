@@ -22,6 +22,7 @@ namespace Service.Helpers.Enums
         GetStudentByAge = 12,
         GetAllStudentsByGroupId = 13,
         SearchGroupsByName = 14,
-        SearchStudentsByNameOrSurname = 15
+        SearchStudentsByNameOrSurname = 15,
+        GetAllStudents = 16,
     }
 }
