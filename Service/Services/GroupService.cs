@@ -81,5 +81,13 @@ namespace Service.Services
         {
             return _groupRepository.GetAll();
         }
+
+        public Group GetByName(string group)
+        {
+            var result = _groupRepository.GetByName(group);
+            return result;
+        }
+
+       
     }
 }

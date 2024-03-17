@@ -40,6 +40,8 @@ namespace Service.Services
             Student student = _studentRepository.GetById(id);
 
             if (student == null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+            _studentRepository.Delete(student);
         }
 
         public List<Student> GetAll()

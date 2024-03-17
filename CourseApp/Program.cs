@@ -65,13 +65,13 @@ while (true)
                 ConsoleColor.Yellow.WriteConsole("Service temporarily suspended");  //Console.WriteLine("Service temporarily suspended");
                 break;
             case (int)OperationType.GetStudentById:
-                Console.WriteLine("yes");
+                studentController.GetStudentById();
                 break;
             case (int)OperationType.StudentDelete:
-                Console.WriteLine("yes");
+                studentController.StudentDelete();
                 break;
             case (int)OperationType.GetStudentByAge:
-                Console.WriteLine("yes");
+                studentController.GetStudentsByAge();
                 break;
             case (int)OperationType.GetAllStudentsByGroupId:
                 Console.WriteLine("yes");

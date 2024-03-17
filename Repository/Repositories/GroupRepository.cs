@@ -24,6 +24,9 @@ namespace Repository.Repositories
             return AppDbContext<Group>.datas.Where(m => m.Teacher == teacherName).ToList();
         }
 
-
+        public Group GetByName(string group)
+        {
+            return AppDbContext<Group>.datas.FirstOrDefault(m => m.Name == group);
+        }
     }
 }

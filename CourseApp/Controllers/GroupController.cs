@@ -150,7 +150,7 @@ namespace CourseApp.Controllers
         public void GetById()
         {
             ConsoleColor.Blue.WriteConsole("Add group id:");
-        Id: string idStr = Console.ReadLine();
+            Id: string idStr = Console.ReadLine();
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
             if (isCorrectIdFormat)

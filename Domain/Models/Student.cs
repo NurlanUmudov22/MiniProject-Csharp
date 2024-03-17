@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public abstract class Student : BaseEntity
+    public  class Student : BaseEntity
     {
         public string Name { get; set; }
         public string Surname { get; set; }
