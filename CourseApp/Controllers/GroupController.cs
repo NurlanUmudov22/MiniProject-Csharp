@@ -31,8 +31,20 @@ namespace CourseApp.Controllers
             if ( string.IsNullOrWhiteSpace(name))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Name;            
+            }
+            if (name.Count() < 2 || name.Count() > 30)
+            {
+                ConsoleColor.Red.WriteConsole("The group name cannot be less than 2 characters or more than 30 characters");
                 goto Name;
             }
+            if (_groupService.GetAll().Any(m => m.Name == name)) 
+            {
+                ConsoleColor.Red.WriteConsole("Group adlari eyni ola bilmez");
+                goto Name;
+            }
+
+
 
             ConsoleColor.Blue.WriteConsole("Add teacher name:");
             TeacherName:  string teacherName = Console.ReadLine();
@@ -42,9 +54,19 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto TeacherName;
             }
+            if (teacherName.Count() < 2 || teacherName.Count() > 50)
+            {
+                ConsoleColor.Red.WriteConsole("The teacher name cannot be less than 2 characters or more than 50 characters");
+                goto TeacherName;
+            }
 
             ConsoleColor.Blue.WriteConsole("Add group room name:");
             Room: string room = Console.ReadLine();
+            if (room.Count() < 2 || room.Count() > 50)
+            {
+                ConsoleColor.Red.WriteConsole("The teacher name cannot be less than 2 characters or more than 50 characters");
+                goto Room;
+            }
             if (string.IsNullOrWhiteSpace(room))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
