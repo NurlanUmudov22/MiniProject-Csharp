@@ -277,13 +277,20 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Name;
             }
-            else
-            {
+            
+            
                 try
                 {
                     _groupService.SearchByName(name);
 
                     var result1 = _groupService.SearchByName(name);
+
+                    if (result1.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Data notfound");
+                    
+                }
+
 
                     foreach (var item in result1)
                     {
@@ -299,7 +306,7 @@ namespace CourseApp.Controllers
                     goto Name;
 
                 }
-            }
+            
         }
 
       

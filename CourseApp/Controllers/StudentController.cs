@@ -233,12 +233,24 @@ namespace CourseApp.Controllers
             Id:  string idStr = Console.ReadLine();
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Id;
+            }
             if (isCorrectIdFormat)
             {
 
                 try
                 {
                     var result = _studentService.GetAllStudentsByGroupId(id);
+
+                    if (result.Count == 0)
+                    {
+                        ConsoleColor.Red.WriteConsole("Id notfound");
+                        
+                    }
+
                     foreach (var item in result)
                     {
                         string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
@@ -250,37 +262,36 @@ namespace CourseApp.Controllers
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
                     goto Id;
-                    //ConsoleColor.Red.WriteConsole("Id not found");
                 }
             }
-            
-            
-                //if(_studentService.GetAll().Count == 0)
-                //{
-                //    ConsoleColor.Red.WriteConsole("Data is not");
-                //    return;
-
-                //}
-            
+           
         }
 
         public void SearchStudentsByNameOrSurname()
         {
             ConsoleColor.Blue.WriteConsole("Add student name or surname:");
-            Name: string text = Console.ReadLine();
+        Name: string text = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(text))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Name;
-            
-            
+
+            }
             
                 try
                 {
                     _studentService.SearchStudentsByNameOrSurname(text);
 
                     var result1 = _studentService.SearchStudentsByNameOrSurname(text);
+
+                    if (result1.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Data is notfound");
+                    
+                }
+
+
                     if (result1 != null)
                     {
                         foreach (var item in result1)
@@ -298,11 +309,8 @@ namespace CourseApp.Controllers
                     goto Name;
 
                 }
-            }
-            else
-            {
-                ConsoleColor.Red.WriteConsole("Data not found");
-            }
+            
+            
         }
 
     }
