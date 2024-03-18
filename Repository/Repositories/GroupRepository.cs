@@ -7,6 +7,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Repository.Repositories
 {
@@ -26,7 +27,14 @@ namespace Repository.Repositories
 
         public Group GetByName(string group)
         {
-            return AppDbContext<Group>.datas.FirstOrDefault(m => m.Name == group);
+            return AppDbContext<Group>.datas.FirstOrDefault(m => m.Name.ToLower() == group);
         }
+
+        public List<Group> SearchByName(string group)
+        {
+            return AppDbContext<Group>.datas.Where(m => m.Name.ToLower().Trim().Contains(group.ToLower().Trim())).ToList();
+        }
+
+
     }
 }

@@ -24,7 +24,7 @@ namespace Repository.Repositories
 
         public List<Student> SearchStudentsByNameOrSurname(string text)
         {
-            return AppDbContext<Student>.datas.Where(m => m.Name == text || m.Surname == text).ToList();
+            return AppDbContext<Student>.datas.Where(m => m.Name.ToLower().Trim().Contains(text.ToLower().Trim()) || m.Surname.ToLower().Trim().Contains(text.ToLower().Trim())).ToList();
         }
     }
 }

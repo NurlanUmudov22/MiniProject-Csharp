@@ -13,5 +13,7 @@ namespace Repository.Repositories.Interfaces
 
         List<Group> GetAllGroupsByRoom(string roomName);
         Group GetByName(string group);
+
+        List<Group> SearchByName(string group);
     }
 }

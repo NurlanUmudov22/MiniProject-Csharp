@@ -28,5 +28,6 @@ namespace Service.Services.Interfaces
         List<Group> GetAllGroupsByTeacher(string teacher);
 
         Group GetByName(string group);
+       
     }
 }

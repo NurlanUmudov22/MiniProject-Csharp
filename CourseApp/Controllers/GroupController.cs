@@ -8,8 +8,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Group = Domain.Models.Group;
 
 namespace CourseApp.Controllers
 {
@@ -33,14 +35,14 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Name;            
             }
-            if (name.Count() < 2 || name.Count() > 30)
+            if (name.Count() > 30)
             {
-                ConsoleColor.Red.WriteConsole("The group name cannot be less than 2 characters or more than 30 characters");
+                ConsoleColor.Red.WriteConsole("The group name cannot be more than 30 characters");
                 goto Name;
             }
-            if (_groupService.GetAll().Any(m => m.Name == name)) 
+            if (_groupService.GetAll().Any(m => m.Name.ToLower() == name.ToLower())) 
             {
-                ConsoleColor.Red.WriteConsole("Group adlari eyni ola bilmez");
+                ConsoleColor.Red.WriteConsole("Group names can not be the same");
                 goto Name;
             }
 
@@ -48,23 +50,29 @@ namespace CourseApp.Controllers
 
             ConsoleColor.Blue.WriteConsole("Add teacher name:");
             TeacherName:  string teacherName = Console.ReadLine();
+            if (!Regex.IsMatch(teacherName, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto TeacherName;
+            }
 
             if (string.IsNullOrWhiteSpace(teacherName))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto TeacherName;
             }
-            if (teacherName.Count() < 2 || teacherName.Count() > 50)
+
+            if ( teacherName.Count() > 50)
             {
-                ConsoleColor.Red.WriteConsole("The teacher name cannot be less than 2 characters or more than 50 characters");
+                ConsoleColor.Red.WriteConsole("The teacher name cannot be more than 50 characters");
                 goto TeacherName;
             }
 
             ConsoleColor.Blue.WriteConsole("Add group room name:");
             Room: string room = Console.ReadLine();
-            if (room.Count() < 2 || room.Count() > 50)
+            if (room.Count() > 40)
             {
-                ConsoleColor.Red.WriteConsole("The teacher name cannot be less than 2 characters or more than 50 characters");
+                ConsoleColor.Red.WriteConsole("The room name cannot be more than 40 characters");
                 goto Room;
             }
             if (string.IsNullOrWhiteSpace(room))
@@ -119,7 +127,7 @@ namespace CourseApp.Controllers
                    try
                     {
                     _groupService.Delete(id);
-                    ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                    ConsoleColor.Green.WriteConsole("Data successfully deleted");                   
                     }
                 catch (Exception ex)
                 {
@@ -143,7 +151,7 @@ namespace CourseApp.Controllers
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Teacher;
-            }
+            }           
             else
             {
                 try
@@ -151,12 +159,20 @@ namespace CourseApp.Controllers
                     _groupService.GetAllGroupsByTeacher(teacher);
 
                     var result = _groupService.GetAllGroupsByTeacher( teacher);
-
-                    foreach (var item in result)
+                    if (result.Count != 0)
                     {
-                        string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
-                        Console.WriteLine(data);
+                        foreach (var item in result)
+                        {
+                            string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
+                            Console.WriteLine(data);
+                        }
                     }
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("There is no teacher with this name");
+                        goto Teacher;
+                    }
+                   
 
                 }
                 catch (Exception ex)
@@ -217,10 +233,24 @@ namespace CourseApp.Controllers
 
                     var result = _groupService.GetAllGroupsByRoom(room);
 
-                    foreach (var item in result)
+                    if (result.Count !=  0)
                     {
-                        string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
-                        Console.WriteLine(data);
+                        foreach (var item in result)
+                        {
+                            string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
+                            Console.WriteLine(data);
+                        }
+
+                    }
+                    //foreach (var item in result)
+                    //{
+                    //    string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
+                    //    Console.WriteLine(data);
+                    //}
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("There is no group with this name");
+                        goto Room;
                     }
 
                 }

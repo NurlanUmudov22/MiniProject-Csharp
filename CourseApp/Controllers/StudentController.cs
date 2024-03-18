@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -26,9 +27,15 @@ namespace CourseApp.Controllers
 
         public void Create()
         {
+
+
             ConsoleColor.Blue.WriteConsole("Add student name:");
             Name: string name = Console.ReadLine();
-
+            if (!Regex.IsMatch(name, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Name;
+            }
             if (string.IsNullOrWhiteSpace(name))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
@@ -37,6 +44,11 @@ namespace CourseApp.Controllers
 
             ConsoleColor.Blue.WriteConsole("Add student surname:");
             Surname: string surname = Console.ReadLine();
+            if (!Regex.IsMatch(surname, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Surname;
+            }
 
             if (string.IsNullOrWhiteSpace(surname))
             {
@@ -48,6 +60,12 @@ namespace CourseApp.Controllers
             Age: string ageStr = Console.ReadLine();
             int age;
             bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
+
+            if( age < 15 || age > 50)
+            {
+                ConsoleColor.Red.WriteConsole("Age restrictions");
+                goto Age;
+            }
 
             if (isCorrectAgeFormat)
             {

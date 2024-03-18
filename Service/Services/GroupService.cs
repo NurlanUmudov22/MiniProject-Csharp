@@ -69,7 +69,8 @@ namespace Service.Services
       
         public List<Group> SearchByName(string searchText)
         {
-            return _groupRepository.GetAllWithExpression(m => m.Name == searchText);
+            return _groupRepository.SearchByName(searchText);
+
         }
 
         public void Update(Group data)
