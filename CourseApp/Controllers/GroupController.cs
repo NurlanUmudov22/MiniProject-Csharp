@@ -134,6 +134,17 @@ namespace CourseApp.Controllers
                 {
                    try
                     {
+                    var response = _groupService.GetById(id);
+                    if (response.Id == 0)
+                    {
+                        Console.WriteLine("data is deleted");
+                        return;
+
+                    }
+
+
+
+
                     _groupService.Delete(id);
                     ConsoleColor.Green.WriteConsole("Data successfully deleted");                   
                     }
@@ -143,7 +154,7 @@ namespace CourseApp.Controllers
                     //goto Id;
                     return;
                 }
-                }
+                }             
                 else
                 {
                 ConsoleColor.Red.WriteConsole("Id format is wrong, please add again");

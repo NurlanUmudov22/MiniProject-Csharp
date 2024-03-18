@@ -117,15 +117,17 @@ namespace CourseApp.Controllers
 
             if(result.Count == 0)
             {
-                ConsoleColor.Red.WriteConsole("Data is notfound");
-                
+                ConsoleColor.Red.WriteConsole("Data is notfound");               
             }
+            
 
             foreach (var item in result)
             {
                 string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
-                Console.WriteLine(data);
+                Console.WriteLine(data);               
             }
+
+           
         }
 
         public void GetStudentById()
@@ -229,7 +231,8 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Age;
+                    //goto Age;
+                    return;
                     
 
                 }
@@ -256,6 +259,15 @@ namespace CourseApp.Controllers
 
                 try
                 {
+                    var response = _groupService.GetById(id);
+                    if (response.Id == 0)
+                    {
+                        Console.WriteLine("data is deleted");
+                        return;
+
+                    }
+
+
                     var result = _studentService.GetAllStudentsByGroupId(id);
 
                     if (result.Count == 0)
@@ -268,13 +280,16 @@ namespace CourseApp.Controllers
                     {
                         string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
                         Console.WriteLine(data);
+                        
                     }
+                   
 
                 }
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Id;
+                    //goto Id;
+                    return;
                 }
             }
            
@@ -294,6 +309,7 @@ namespace CourseApp.Controllers
             
                 try
                 {
+
                     _studentService.SearchStudentsByNameOrSurname(text);
 
                     var result1 = _studentService.SearchStudentsByNameOrSurname(text);
@@ -319,7 +335,8 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Name;
+                //goto Name;
+                return;
 
                 }
             

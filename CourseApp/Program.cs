@@ -88,12 +88,14 @@ while (true)
             default:
                 ConsoleColor.Red.WriteConsole("Operation format is wrong, please choose again");
                 goto Operation;
+                return;
         }
     }
     else
     {
         ConsoleColor.Red.WriteConsole("Operations is wrong, please add operation again ");
         goto Operation;
+        
     }
 }
 
