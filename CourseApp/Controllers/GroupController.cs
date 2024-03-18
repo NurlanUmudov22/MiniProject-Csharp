@@ -33,7 +33,9 @@ namespace CourseApp.Controllers
             if ( string.IsNullOrWhiteSpace(name))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
-                goto Name;            
+                goto Name;
+                //return;
+                
             }
             if (name.Count() > 30)
             {
@@ -132,7 +134,8 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Id;
+                    //goto Id;
+                    return;
                 }
                 }
                 else
@@ -205,7 +208,8 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Id;
+                    //goto Id;
+                    // return;
                 }
             }
             else

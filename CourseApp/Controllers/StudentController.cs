@@ -27,7 +27,12 @@ namespace CourseApp.Controllers
 
         public void Create()
         {
+            if (_groupService.GetAll().Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole("Group is not, please create group");
+                return;
 
+            }
 
             ConsoleColor.Blue.WriteConsole("Add student name:");
             Name: string name = Console.ReadLine();
@@ -118,34 +123,39 @@ namespace CourseApp.Controllers
 
         public void GetStudentById()
         {
-            Console.WriteLine(" Add student id:");
+            ConsoleColor.Blue.WriteConsole(" Add student id:");
             Id: string idStr = Console.ReadLine();
 
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
 
-            if (isCorrectIdFormat)
+            if (string.IsNullOrWhiteSpace(idStr))
             {
-                try
-                {
-                    _studentService.GetById(id);
-                    var result = _studentService.GetById(id);
-                    string data = $"Id:{result.Id}, Name: {result.Name}, Surname: {result.Surname}, Group name: {result.Group.Name}, Age: {result.Age}";
-                    Console.WriteLine(data);
-
-                }
-                catch (Exception ex)
-                {
-                    ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Id;
-
-                }
-            }
-            else
-            {
-                ConsoleColor.Red.WriteConsole("Id format is wrong, please add again");
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Id;
+                //return;
+
             }
+            try
+            {
+                _studentService.GetById(id);
+                var result = _studentService.GetById(id);
+                string data = $"Id:{result.Id}, Name: {result.Name}, Surname: {result.Surname}, Group name: {result.Group.Name}, Age: {result.Age}";
+                Console.WriteLine(data);
+
+            }
+            catch (Exception)
+            {
+                // ConsoleColor.Red.WriteConsole(ex.Message);
+                //goto Id;
+                //return;
+                ConsoleColor.Red.WriteConsole("Id not found");
+            }
+
+
+
+
+
         }
 
         public void StudentDelete()
@@ -159,17 +169,21 @@ namespace CourseApp.Controllers
                 try
                 {
 
-                    var result = _studentService.GetById(id);
-                    if (result != null)
-                    {
-                        _studentService.Delete(id);
-                        ConsoleColor.Green.WriteConsole("Data successfully deleted");
-                    }                
+                    _studentService.Delete(id);
+                    ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                    //var result = _studentService.GetById(id);
+                    //if (result != null)
+                    //{
+                    //    _studentService.Delete(id);
+                    //    ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                    //}
+                    //
                 }
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Id;
+                    //goto Id;
+                    return;
                 }
             }
             else
@@ -203,8 +217,13 @@ namespace CourseApp.Controllers
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
                     goto Age;
+                    
 
                 }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Data not found");
             }
         }
 
@@ -216,6 +235,7 @@ namespace CourseApp.Controllers
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
             if (isCorrectIdFormat)
             {
+
                 try
                 {
                     var result = _studentService.GetAllStudentsByGroupId(id);
@@ -224,14 +244,24 @@ namespace CourseApp.Controllers
                         string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
                         Console.WriteLine(data);
                     }
-                   
+
                 }
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
                     goto Id;
+                    //ConsoleColor.Red.WriteConsole("Id not found");
                 }
             }
+            
+            
+                //if(_studentService.GetAll().Count == 0)
+                //{
+                //    ConsoleColor.Red.WriteConsole("Data is not");
+                //    return;
+
+                //}
+            
         }
 
         public void SearchStudentsByNameOrSurname()
@@ -243,9 +273,9 @@ namespace CourseApp.Controllers
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Name;
-            }
-            else
-            {
+            
+            
+            
                 try
                 {
                     _studentService.SearchStudentsByNameOrSurname(text);
@@ -260,12 +290,7 @@ namespace CourseApp.Controllers
                         }
 
                     }
-                    else
-                    {
-                        Console.WriteLine("Data not found");
-                    }
-
-
+                    
                 }
                 catch (Exception ex)
                 {
@@ -273,6 +298,10 @@ namespace CourseApp.Controllers
                     goto Name;
 
                 }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Data not found");
             }
         }
 
