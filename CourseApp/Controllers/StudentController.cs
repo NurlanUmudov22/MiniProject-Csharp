@@ -114,6 +114,13 @@ namespace CourseApp.Controllers
         public void GetAll()
         {
             var result = _studentService.GetAll();
+
+            if(result.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole("Data is notfound");
+                
+            }
+
             foreach (var item in result)
             {
                 string data = $"Id:{item.Id}, Name: {item.Name}, Surname: {item.Surname}, Group name: {item.Group.Name}, Age: {item.Age}";
@@ -205,6 +212,12 @@ namespace CourseApp.Controllers
                 try
                 {
                     var result1 = _studentService.GetStudentsByAge(age);
+
+                    if( result1.Count == 0)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data is notfound");
+
+                    }
 
                     foreach (var item in result1)
                     {

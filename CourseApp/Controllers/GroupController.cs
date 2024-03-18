@@ -111,6 +111,12 @@ namespace CourseApp.Controllers
         public void GetAll()
         {
             var result = _groupService.GetAllWithExpression();
+            if (result.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole("Data is notfound ");
+                
+            }
+
             foreach (var item in result)
             {
                 string data = $"Id:{item.Id}, Group name: {item.Name}, Teacher name: {item.Teacher}, Room name: {item.Room}";
