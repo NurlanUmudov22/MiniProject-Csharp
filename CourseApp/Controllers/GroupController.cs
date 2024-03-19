@@ -18,10 +18,12 @@ namespace CourseApp.Controllers
     internal class GroupController
     {
         private readonly IGroupService _groupService;
+        private readonly IStudentService _studentService;
 
         public GroupController()
         {
             _groupService = new GroupService();
+            _studentService = new StudentService();
         }
 
         public void Create()
@@ -145,7 +147,10 @@ namespace CourseApp.Controllers
 
 
 
+
                     _groupService.Delete(id);
+                    _studentService.DeleteAll(id);
+
                     ConsoleColor.Green.WriteConsole("Data successfully deleted");                   
                     }
                 catch (Exception ex)

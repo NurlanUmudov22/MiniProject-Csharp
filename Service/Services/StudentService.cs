@@ -44,6 +44,16 @@ namespace Service.Services
             _studentRepository.Delete(student);
         }
 
+        public void DeleteAll(int? id)
+        {
+            if (id == null) throw new ArgumentNullException();
+            List<Student> students = _studentRepository.GetAllWithExpression(m => m.Group.Id== id);
+
+            if (students == null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+            _studentRepository.DeleteAll((int)id);
+        }
+
         public List<Student> GetAll()
         {
             return _studentRepository.GetAll();

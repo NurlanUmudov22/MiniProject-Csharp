@@ -27,5 +27,7 @@ namespace Service.Services.Interfaces
 
         List<Student> SearchStudentsByNameOrSurname(string text);
 
+        void DeleteAll(int? id);
+
     }
 }

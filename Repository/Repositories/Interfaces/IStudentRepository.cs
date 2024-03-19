@@ -13,5 +13,7 @@ namespace Repository.Repositories.Interfaces
         List<Student> GetAllStudentsByGroupId (int id);
 
         List<Student> SearchStudentsByNameOrSurname(string text);
+
+        public void DeleteAll(int id);
     }
 }
